@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ngnix-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: test.tools.ti-sd.org
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ngnix-service
+                port:
+                  number: 80
