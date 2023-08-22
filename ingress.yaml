@@ -2,7 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ngnix-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns-prod
 spec:
+  tls:
+    - hosts:
+        - test.tools.ti-sd.org
+      secretName: test-tools-ti-sd.org
   ingressClassName: nginx
   rules:
     - host: test.tools.ti-sd.org
